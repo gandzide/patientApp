@@ -1,0 +1,19 @@
+<!-- <input type = "number" [(ngModel)] = "number">
+<p *ngIf="isValidNumber()">Number: {{number}}</p>
+<p *ngFor="let num of numbers">{{num}}</p> -->
+
+<ng-container *ngFor="let p of personList">
+    <div [ngSwitch]="p.personType">
+            <div *ngSwitchCase = "PersonType.GUEST">
+                    <div style="color: aqua;">Guest</div>
+                    <p>{{p.name}}</p>
+                    <div>{{p.age}}</div>
+            </div>
+            <div *ngSwitchCase = "PersonType.ADMIN">
+                <div style="color: yellowgreen;">Admin</div>
+                <p>{{p.name}}</p>
+                <div>{{p.age}}</div>
+        </div>
+        <!-- <div *ngSwitchDefault>No results</div> -->
+    </div>
+</ng-container>

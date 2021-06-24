@@ -1,0 +1,42 @@
+<!-- <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="University">
+        <app-university>
+            
+        </app-university>
+    </mat-tab>
+    <mat-tab label="Faculty"> 
+            <app-faculty>
+
+            </app-faculty>
+    </mat-tab>
+    <mat-tab label="Students">
+        <app-student>
+
+        </app-student>
+    </mat-tab>
+    <mat-tab label="Teachers">
+        <app-teacher>
+
+        </app-teacher>
+    </mat-tab>
+    <mat-tab label="Courses"> 
+        <app-course>
+
+        </app-course>
+    </mat-tab>
+    <mat-tab label="Marks"> 
+        <app-marks>
+
+        </app-marks>
+    </mat-tab>
+  </mat-tab-group> -->
+
+  <div class="navigation">
+    <button mat-button (click)="goTo('university')" color="primary">University</button>
+    <button mat-button (click)="goTo('faculty')" color="primary">Faculty</button>
+    <button mat-button (click)="goTo('student')" color="primary">Student</button>
+    <button mat-button (click)="goTo('teacher')" color="primary">Teacher</button>
+    <button mat-button (click)="goTo('course')" color="primary">Course</button>
+    <button mat-button (click)="goTo('mark')" color="primary">Mark</button>
+</div>
+<router-outlet></router-outlet>

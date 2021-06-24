@@ -1,0 +1,25 @@
+<form [formGroup] = "formGroup" >
+    <mat-form-field color = "primary">
+        <mat-label color = "primary">Firstname</mat-label>
+        <input matInput formControlName = "firstname" color = "primary">
+    </mat-form-field>
+    <mat-form-field color = "primary" >
+      <mat-label color = "primary">Lastname</mat-label>
+      <input matInput formControlName = "lastname" color = "primary">
+  </mat-form-field>
+  <mat-form-field color = "primary" >
+    <mat-label color = "primary">CNP</mat-label>
+    <input matInput formControlName = "cnp" color = "primary">
+</mat-form-field>
+<mat-form-field color = "primary" >
+    <mat-label color = "primary">Salary</mat-label>
+    <input matInput formControlName = "salary" color = "primary">
+</mat-form-field>
+<mat-form-field color = "primary" >
+    <mat-label color = "primary">Faculty</mat-label>
+    <input matInput formControlName = "faculty" color = "primary">
+</mat-form-field>
+  </form>
+  
+  <button color = "primary" mat-raised-button (click)="goBack()">Go back</button>
+  <button color = "primary" mat-raised-button (click)="saveUniversity()">Save</button>

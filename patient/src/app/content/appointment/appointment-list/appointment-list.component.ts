@@ -1,33 +1,13 @@
-import {
-    Component,
-    ChangeDetectionStrategy,
-    ViewChild,
-    TemplateRef,
-    OnInit,
-  } from '@angular/core';
-  import {
-    startOfDay,
-    endOfDay,
-    subDays,
-    addDays,
-    endOfMonth,
-    isSameDay,
-    isSameMonth,
-    addHours,
-  } from 'date-fns';
-  import { Observable, Subject, Subscription } from 'rxjs';
-  import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-  import {
-    CalendarEvent,
-    CalendarEventAction,
-    CalendarEventTimesChangedEvent,
-    CalendarView,
-  } from 'angular-calendar';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView, } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
-import { AppointmentService } from 'src/app/services/appointment.service';
+import { endOfDay, isSameDay, isSameMonth, startOfDay, } from 'date-fns';
+import { Subject, Subscription } from 'rxjs';
 import { AppointmentModel } from 'src/app/models/appointment.model';
-  
-  const colors: any = {
+import { AppointmentService } from 'src/app/services/appointment.service';
+
+const colors: any = {
     red: {
       primary: '#ad2121',
       secondary: '#FAE3E3',
@@ -72,27 +52,28 @@ export class MyCalendarEvent implements CalendarEvent{
     templateUrl: './appointment-list.component.html',
     styleUrls: ['./appointment-list.component.scss']
   })
-export class AppointmentListComponent implements OnInit{
+export class AppointmentListComponent implements OnInit {
     @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
-    ngOnInit(): void {;
-     
+    ngOnInit(): void {
+        this.subscriptionList.push(
+            this.service.getAppointments().subscribe((list: AppointmentModel[]) => this.myCalendarEventList = this.convertToEvent(list))
+        );
     }
-    convertToEvent(list: AppointmentModel[]){
-        return list.forEach(app => {
-          new MyCalendarEvent(app);
+    convertToEvent(list: AppointmentModel[]):  MyCalendarEvent[]{
+        return list.map((app: AppointmentModel) => {
+            return new MyCalendarEvent(app)
         });
     }
 
     constructor(private modal: NgbModal, public service: AppointmentService) {
-      this.subscriptionList.push(
-        this.service.getAppointments().subscribe(list => this.appointments = list)
-        );
       }
     
     subscriptionList: Subscription[] = [];
 
     appointments: AppointmentModel[] = [];
+
+    myCalendarEventList: MyCalendarEvent[] = [];
 
     view: CalendarView = CalendarView.Month;
   
